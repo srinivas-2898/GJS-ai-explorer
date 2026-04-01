@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perplexity Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="top-nav">
+                <div class="nav-item active" id="nav-search">
+                    <i data-lucide="search"></i>
+                    <span>Search</span>
+                </div>
+                <div class="nav-item" id="nav-computer">
+                    <i data-lucide="monitor"></i>
+                    <span>Computer</span>
+                </div>
+                
+                <button class="new-thread-btn">
+                    <i data-lucide="plus"></i>
+                    <span>New thread</span>
+                    <span class="shortcut">Ctrl I</span>
+                </button>
+
+                <div class="nav-divider"></div>
+
+                <div class="nav-group">
+                    <div class="nav-item" title="History">
+                        <i data-lucide="clock"></i>
+                        <span>History</span>
+                    </div>
+                    <div class="nav-item" title="Discover">
+                        <i data-lucide="compass"></i>
+                        <span>Discover</span>
+                    </div>
+                    <div class="nav-item" title="Spaces">
+                        <i data-lucide="layout-grid"></i>
+                        <span>Spaces</span>
+                    </div>
+                    <div class="nav-item" title="Finance">
+                        <i data-lucide="trending-up"></i>
+                        <span>Finance</span>
+                    </div>
+                    <div class="nav-item" title="Health">
+                        <i data-lucide="heart"></i>
+                        <span>Health</span>
+                    </div>
+                </div>
+                
+                <div class="nav-item more">
+                    <i data-lucide="more-horizontal"></i>
+                    <span>More</span>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="recent-threads">
+                    <span class="recent-title">Recent History</span>
+                    <div id="history-list" class="history-list">
+                        <p class="recent-empty">Recent and active threads will appear here.</p>
+                    </div>
+                </div>
+                <div class="sidebar-logo-container">
+                    <img src="gjs_ai_logo.png" alt="GJS AI Logo" class="sidebar-logo-img">
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">G</div>
+                    <span class="user-name">Sign In</span>
+                    <i data-lucide="chevron-right" class="chevron"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="search-hero">
+                <div class="logo-container">
+                    <img src="gjs_ai_logo.png" alt="GJS AI Logo" class="hero-logo">
+                </div>
+                
+                <div class="search-container">
+                    <textarea class="search-input" placeholder="Type / for search modes" rows="1"></textarea>
+                    
+                    <div class="search-controls">
+                        <div class="control-left">
+                            <button class="control-btn" id="attach-btn" title="Attach PDF">
+                                <i data-lucide="plus"></i>
+                                <span>Attach</span>
+                            </button>
+                            <input type="file" id="file-input" accept=".pdf" style="display: none;">
+                            <div id="file-status" class="file-status" style="display: none;">
+                                <i data-lucide="file-text"></i>
+                                <span id="filename-display"></span>
+                                <button id="remove-file" class="remove-btn">
+                                    <i data-lucide="x"></i>
+                                </button>
+                            </div>
+                            <div class="control-divider"></div>
+                            <button class="control-btn focus-mode" title="Focus">
+                                <i data-lucide="monitor"></i>
+                                <span>Computer</span>
+                                <i data-lucide="chevron-down" class="chevron"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="control-right">
+                            <button class="model-select">
+                                <span>Model</span>
+                                <i data-lucide="chevron-down" class="chevron"></i>
+                            </button>
+                            <button class="icon-btn" title="Voice">
+                                <i data-lucide="mic"></i>
+                            </button>
+                            <button class="send-btn" title="Send">
+                                <i data-lucide="arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Response Section (Hidden by default) -->
+            <div id="ai-response-container" class="ai-response-container" style="display: none;">
+                <div class="response-header">
+                    <i data-lucide="sparkles"></i>
+                    <span>Answer</span>
+                </div>
+                <div id="ai-response-text" class="ai-response-text"></div>
+            </div>
+
+            <!-- Suggestion Section -->
+            <section class="suggestions-container">
+                <div class="suggestions-header">
+                    <i data-lucide="monitor" class="header-icon"></i>
+                    <span>Try Computer</span>
+                </div>
+                
+                <div class="tabs-container">
+                    <div class="tabs-scroll">
+                        <button class="tab active" data-tab="organise">
+                            <i data-lucide="list"></i>
+                            Organise my life
+                        </button>
+                        <button class="tab" data-tab="learn">
+                            <i data-lucide="lightbulb"></i>
+                            Help me learn
+                        </button>
+                        <button class="tab" data-tab="prototype">
+                            <i data-lucide="code"></i>
+                            Create a prototype
+                        </button>
+                        <button class="tab" data-tab="monitor">
+                            <i data-lucide="eye"></i>
+                            Monitor the situation
+                        </button>
+                    </div>
+                </div>
+
+                <div class="suggestion-list" id="suggestion-content">
+                    <div class="suggestion-item">Triage my inbox and draft responses</div>
+                    <div class="suggestion-item">Build a personal CRM to track my network</div>
+                    <div class="suggestion-item">Set up a weekly review system every Sunday</div>
+                    <div class="suggestion-item">Plan a trip with full itinerary and bookings</div>
+                    <div class="suggestion-item">Redesign my schedule around priorities</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Settings Overlay / Profile Dashboard -->
+    <div id="settings-overlay" class="settings-overlay">
+        <div class="settings-modal">
+            <div class="settings-header">
+                <h2>Profile Settings</h2>
+                <button id="close-settings" class="close-btn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <div class="profile-section">
+                <div class="profile-pic-container">
+                    <div class="profile-pic">G</div>
+                    <button class="add-pic-btn" title="Add Picture">
+                        <i data-lucide="camera" size="16"></i>
+                    </button>
+                </div>
+                <div class="user-info">
+                    <h3 id="profile-name">GJS AI User</h3>
+                    <p id="profile-email">user@gjs.ai</p>
+                </div>
+            </div>
+
+            <div class="settings-list">
+                <div class="setting-item">
+                    <span>Incognito Mode</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="incognito-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>Notifications</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="notifications-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <button class="action-btn">
+                    <i data-lucide="database"></i>
+                    AI Data Retention
+                </button>
+                
+                <button id="clear-history-btn" class="action-btn danger-btn">
+                    <i data-lucide="trash-2"></i>
+                    Clear History
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
